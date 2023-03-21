@@ -1,15 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-
+news: [],
 }
 
 const newsSlice = createSlice({
-  name: second,
+  name: news,
   initialState,
-  reducers: {}
+  reducers: {
+    clearNews: (state) => {
+        state.news = []
+    }
+  }
 });
 
-export const {} = newsSlice.actions
+export const { clearNews } = newsSlice.actions
 
 export default newsSlice.reducer
