@@ -5,14 +5,17 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { CardMedia } from "@mui/material";
-
-
-
+import { getNews } from "../features/newsSlice";
+import { useEffect } from "react";
+import {useDispatch, useSelector} from 'react-redux'
 
 const News = () => {
-const API_KEY = process.env.REACT_APP_API_KEY
-
-  const url = `https://newsapi.org/v2/top-headlines?country=tr&apiKey=${API_KEY}`;
+const dispatch = useDispatch()
+const {news} = useSelector(state => state.news)
+    useEffect(() => {
+      dispatch( getNews())
+     
+    },[])
 
   return (
     <>
@@ -24,7 +27,7 @@ const API_KEY = process.env.REACT_APP_API_KEY
         justifyContent="space-evenly"
         flexWrap="wrap"
       >
-        {[1, 2, 3].map((item, index) => (
+        {news?.map((item, index) => (
           <Card sx={{ maxWidth: 345, m: 5, maxHeight: 600 }} key={index}>
             <CardMedia
               component="img"
